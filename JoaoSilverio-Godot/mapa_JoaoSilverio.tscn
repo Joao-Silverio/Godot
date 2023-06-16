@@ -1,12 +1,16 @@
-[gd_scene load_steps=6 format=3 uid="uid://boclgykr0iclw"]
+[gd_scene load_steps=9 format=3 uid="uid://boclgykr0iclw"]
 
 [ext_resource type="PackedScene" uid="uid://b1uw5jcdeiwwx" path="res://tile_map.tscn" id="1_0tma3"]
+[ext_resource type="Script" path="res://mapa_JoaoSilverio.cs" id="1_vpe6r"]
 [ext_resource type="PackedScene" uid="uid://ytn4vaidblk4" path="res://jogador.tscn" id="2_nqsyi"]
 [ext_resource type="PackedScene" uid="uid://x2fa58wxdnsy" path="res://Diamantes.tscn" id="3_6on71"]
 [ext_resource type="PackedScene" uid="uid://4hvg3jqyq5gv" path="res://Spikes.tscn" id="4_8iu84"]
 [ext_resource type="PackedScene" uid="uid://towi7ua1fecg" path="res://SavePoint.tscn" id="5_psxeg"]
+[ext_resource type="PackedScene" uid="uid://xrxbbn7lx7fv" path="res://chegada.tscn" id="7_dax14"]
+[ext_resource type="PackedScene" uid="uid://d4m0nhfgn72n" path="res://vida.tscn" id="8_vlhbq"]
 
 [node name="Mapa_JoaoSilverio" type="Node2D"]
+script = ExtResource("1_vpe6r")
 
 [node name="TileMap" parent="." instance=ExtResource("1_0tma3")]
 rotation = -0.00102332
@@ -19,7 +23,7 @@ position = Vector2(106, 229)
 position = Vector2(407, 101)
 
 [node name="Diamante2" parent="." instance=ExtResource("3_6on71")]
-position = Vector2(1054, 177)
+position = Vector2(1016, 211)
 
 [node name="Diamante3" parent="." instance=ExtResource("3_6on71")]
 position = Vector2(263, 235)
@@ -38,3 +42,9 @@ position = Vector2(404, 231)
 
 [node name="SavePoint" parent="." instance=ExtResource("5_psxeg")]
 position = Vector2(660, 232)
+
+[node name="Chegada" parent="." instance=ExtResource("7_dax14")]
+position = Vector2(1056, 180)
+
+[node name="Vida" parent="." instance=ExtResource("8_vlhbq")]
+position = Vector2(441, 12)

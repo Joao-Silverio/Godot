@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Security.AccessControl;
 
 public partial class Jogador : CharacterBody2D
 {
@@ -11,8 +12,12 @@ public partial class Jogador : CharacterBody2D
 	private float minHeigth = 310f;
 	private bool lookingRight = true;
 	private bool doubleJump;
+	public bool finalPosition;
+	public bool isOnSavePoint;
+	private bool allDiamondsColected;
 	public int diamante;
-
+	private int numberOfDiamonds;
+	public int lives;
 
 	// Get the gravity from the project settings to be synced with RigidBody nodes.
 	public float gravity = ProjectSettings.GetSetting("physics/2d/default_gravity").AsSingle();
@@ -21,20 +26,10 @@ public partial class Jogador : CharacterBody2D
 
 	public override void _Ready() {
 		animate = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
+		allDiamondsColected = false;
+		diamante = 0;
+		lives = 3;
 	} //fim do ready
-
-	public void ReturnToSavePoint()
-	{
-		GlobalPosition = savePoint;
-	}
-
-	public void ContarDiamantes()
-	{
-		if(diamante == 4){
-			GD.Print("Mapa concluido com Sucesso!");
-			diamante = 0;
-		}
-	}
 
 	public override void _PhysicsProcess(double delta)
 	{
@@ -45,16 +40,20 @@ public partial class Jogador : CharacterBody2D
 		if (!IsOnFloor())
 			velocity.Y += gravity * (float)delta;
 
-		Moves();
+		Moves(); //function to the input of the movements
 
-		ContarDiamantes();
+		ContarDiamantes(); // count the diamonds that were collected
 		
-		OutOfTheMap();
+		OutOfTheMap(); //check the position of the player to see if is out of the map
+
+		GameOver(); // check if the game is Over
+
+		EndOfMap(); // check if the map is concluded*/
 
 		Velocity = velocity;
 		MoveAndSlide();
 
-		Animation(velocity);
+		Animation(velocity); // Animation of the player
 
 	} //fim do process
 
@@ -124,12 +123,67 @@ public partial class Jogador : CharacterBody2D
 			Scale *= new Vector2(-1, 1);
 		}
 	}
+	
+	public void SetStart(Vector2 startPosition)
+	{
+		GlobalPosition = startPosition;
+	}
+
+	public void SetNumberOfDiamonds(int setNumberOfDiamonds)
+	{
+		numberOfDiamonds = setNumberOfDiamonds;
+	}
+
+	public void ContarDiamantes()
+	{
+		if (diamante == numberOfDiamonds && allDiamondsColected == false)
+		{
+			GD.Print("Todos os diamantes foram coletados");
+			allDiamondsColected = true;
+		}
+	}
+
+	public override void _Input(InputEvent @event)
+	{
+		if (@event is InputEventKey keyEvent && keyEvent.Pressed)
+		{
+			if (keyEvent.Keycode == Key.T && isOnSavePoint)
+			{
+				savePoint = GlobalPosition;
+				GD.Print("T was pressed");
+			}
+		}
+	}
+
+	public void ReturnToSavePoint()
+	{
+		GlobalPosition = savePoint;
+	}
 
 	private void OutOfTheMap()
 	{
 		if(GlobalPosition.Y > minHeigth)
 		{
 			ReturnToSavePoint();
+			lives--;
+		}
+	}
+
+	private void EndOfMap()
+	{
+		if(finalPosition && allDiamondsColected)
+		{
+			GetTree().ChangeSceneToFile("res://mapa_2.tscn");
+			diamante = 0;
+		}
+	}
+
+	private void GameOver()
+	{
+		if (lives == 0)
+		{
+			GD.Print("Game Over");
+			lives = 1;
 		}
 	}
 

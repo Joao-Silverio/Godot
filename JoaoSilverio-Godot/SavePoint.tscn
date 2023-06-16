@@ -17,4 +17,5 @@ texture = ExtResource("2_3ft5k")
 position = Vector2(0.5, 0.5)
 shape = SubResource("RectangleShape2D_bprey")
 
-[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_entered" from="." to="." method="OnBodyEntered"]
+[connection signal="body_exited" from="." to="." method="OnBodyExited"]
