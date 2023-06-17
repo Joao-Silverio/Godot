@@ -1,0 +1,32 @@
+[gd_scene load_steps=2 format=3 uid="uid://bxkvcokpcoato"]
+
+[ext_resource type="Script" path="res://Button.cs" id="1_aovy1"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="TextEdit" type="TextEdit" parent="."]
+offset_left = 96.0
+offset_top = 19.0
+offset_right = 212.0
+offset_bottom = 55.0
+text = "GAME OVER"
+editable = false
+context_menu_enabled = false
+shortcut_keys_enabled = false
+selecting_enabled = false
+deselect_on_focus_loss_enabled = false
+drag_and_drop_selection_enabled = false
+virtual_keyboard_enabled = false
+middle_mouse_paste_enabled = false
+wrap_mode = 1
+highlight_all_occurrences = true
+
+[node name="Button" type="Button" parent="."]
+offset_left = 98.0
+offset_top = 61.0
+offset_right = 212.0
+offset_bottom = 92.0
+text = "Restart Game"
+script = ExtResource("1_aovy1")
+
+[connection signal="button_down" from="Button" to="Button" method="OnButtonDown"]

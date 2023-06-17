@@ -6,7 +6,7 @@ public partial class Jogador : CharacterBody2D
 {
 	private Vector2 velocity;
 	private Vector2 direction;
-	public Vector2 savePoint = new Vector2(107,227);
+	public Vector2 savePoint;
 	public const float Speed = 300.0f;
 	public const float JumpVelocity = -400.0f;
 	private float minHeigth = 310f;
@@ -18,6 +18,7 @@ public partial class Jogador : CharacterBody2D
 	public int diamante;
 	private int numberOfDiamonds;
 	public int lives;
+	public string nextMap;
 
 	// Get the gravity from the project settings to be synced with RigidBody nodes.
 	public float gravity = ProjectSettings.GetSetting("physics/2d/default_gravity").AsSingle();
@@ -48,7 +49,7 @@ public partial class Jogador : CharacterBody2D
 
 		GameOver(); // check if the game is Over
 
-		EndOfMap(); // check if the map is concluded*/
+		EndOfMap(); // check if the map is concluded
 
 		Velocity = velocity;
 		MoveAndSlide();
@@ -87,11 +88,11 @@ public partial class Jogador : CharacterBody2D
 		{
 			if(velocity.X > 0 && direction.X < 0)
 			{
-				velocity.X = direction.X * (Speed / 3);
+				velocity.X = direction.X * (Speed / 5);
 			} 
 			else if (velocity.X < 0 && direction.X > 0)
 			{
-				velocity.X = direction.X * (Speed / 3);
+				velocity.X = direction.X * (Speed / 5);
 			}
 			else velocity.X = Mathf.MoveToward(Velocity.X, direction.X * Speed/2, Speed);
 		}
@@ -115,18 +116,32 @@ public partial class Jogador : CharacterBody2D
 		if (velocity.X > 0 && lookingRight)
 		{
 			lookingRight = false;
-			Scale *= new Vector2(-1, 1);
+			animate.FlipH = true;
+			//Scale *= new Vector2(-1, 1);
 		}
 		else if (velocity.X < 0 && !lookingRight)
 		{
 			lookingRight = true;
-			Scale *= new Vector2(-1, 1);
+			animate.FlipH = false;
+			//Scale *= new Vector2(-1, 1);
+		}
+	}
+
+	private void CountLivesAnimation()
+	{
+		if(lives == 3){
+			//show all 3
+		} else if(lives == 2){
+			//show 1 and 2
+		} else {
+			//show 1
 		}
 	}
 	
 	public void SetStart(Vector2 startPosition)
 	{
 		GlobalPosition = startPosition;
+		savePoint = startPosition;
 	}
 
 	public void SetNumberOfDiamonds(int setNumberOfDiamonds)
@@ -143,21 +158,14 @@ public partial class Jogador : CharacterBody2D
 		}
 	}
 
-	public override void _Input(InputEvent @event)
-	{
-		if (@event is InputEventKey keyEvent && keyEvent.Pressed)
-		{
-			if (keyEvent.Keycode == Key.T && isOnSavePoint)
-			{
-				savePoint = GlobalPosition;
-				GD.Print("T was pressed");
-			}
-		}
-	}
-
 	public void ReturnToSavePoint()
 	{
 		GlobalPosition = savePoint;
+	}
+	
+	public void SaveNewSavePoint()
+	{
+		savePoint = GlobalPosition;
 	}
 
 	private void OutOfTheMap()
@@ -169,11 +177,16 @@ public partial class Jogador : CharacterBody2D
 		}
 	}
 
+	public void SetNextMap(string setNextMap)
+	{
+		nextMap = setNextMap;
+	}
+
 	private void EndOfMap()
 	{
 		if(finalPosition && allDiamondsColected)
 		{
-			GetTree().ChangeSceneToFile("res://mapa_2.tscn");
+			GetTree().ChangeSceneToFile(nextMap);
 			diamante = 0;
 		}
 	}
@@ -183,7 +196,8 @@ public partial class Jogador : CharacterBody2D
 		if (lives == 0)
 		{
 			GD.Print("Game Over");
-			lives = 1;
+			GetTree().ChangeSceneToFile("game_over.tscn");
+			//lives = 1; //Abrir Cena Game Over 
 		}
 	}
 

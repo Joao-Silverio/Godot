@@ -9,6 +9,8 @@ public partial class mapa_JoaoSilverio : Node2D
 	{
 		GetTree().CallGroup("GrupoJogador", "SetNumberOfDiamonds", 4);
 		GetTree().CallGroup("GrupoJogador", "SetStart", new Vector2(107,230));
+		GetTree().CallGroup("GrupoJogador", "SetNextMap", "res://mapa_2.tscn");
+		
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -16,3 +18,5 @@ public partial class mapa_JoaoSilverio : Node2D
 	{
 	}
 }
+
+//Mostrar como sprite, resolver como mostrar ou nao elas na tela

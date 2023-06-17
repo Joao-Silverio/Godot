@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://ytn4vaidblk4"]
+[gd_scene load_steps=10 format=3 uid="uid://ytn4vaidblk4"]
 
 [ext_resource type="Script" path="res://Jogador.cs" id="1_8qo3t"]
 [ext_resource type="Texture2D" uid="uid://7ctg5kbrm7yv" path="res://pixel_platformer/Tilemap/characters_packed.png" id="2_qlbxd"]
+[ext_resource type="Texture2D" uid="uid://5oo568j3o2p2" path="res://pixel_platformer/Tiles/tile_0044.png" id="3_ybqrr"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8qg4c"]
 atlas = ExtResource("2_qlbxd")
@@ -66,3 +67,15 @@ position = Vector2(0, 0.5)
 shape = SubResource("RectangleShape2D_wwgu0")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Vida1" type="Sprite2D" parent="."]
+position = Vector2(-144, -80)
+texture = ExtResource("3_ybqrr")
+
+[node name="Vida2" type="Sprite2D" parent="."]
+position = Vector2(-127, -80)
+texture = ExtResource("3_ybqrr")
+
+[node name="Vida3" type="Sprite2D" parent="."]
+position = Vector2(-110, -80)
+texture = ExtResource("3_ybqrr")

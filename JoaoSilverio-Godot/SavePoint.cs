@@ -3,11 +3,21 @@ using System;
 
 public partial class SavePoint : Area2D
 {
+	private bool isOnSavePoint;
+
+	public override void _Process(double delta)
+	{
+		if (isOnSavePoint && Input.IsActionJustPressed("ativar"))
+		{
+			GetTree().CallGroup("GrupoJogador", "SaveNewSavePoint");
+		}
+	}
+
 	private void OnBodyEntered(Node2D body)
 	{
 		if (body is Jogador)
 		{
-			((Jogador)body).isOnSavePoint = true;
+			isOnSavePoint = true;
 			GD.Print("Save Point Pode Ser Alterado!");
 		}
 	}
@@ -16,7 +26,7 @@ public partial class SavePoint : Area2D
 	{
 		if (body is Jogador)
 		{
-			((Jogador)body).isOnSavePoint = false;
+			isOnSavePoint = false;
 			GD.Print("Save Point Nao Pode Mais Ser Alterado!");
 		}
 	}
