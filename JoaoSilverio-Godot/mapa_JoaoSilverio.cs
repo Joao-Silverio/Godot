@@ -16,7 +16,8 @@ public partial class mapa_JoaoSilverio : Node2D
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
+		
 	}
 }
 
-//Mostrar como sprite, resolver como mostrar ou nao elas na tela
+//Contagem de Diamante no Label + intranet

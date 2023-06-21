@@ -17,9 +17,13 @@ public partial class vida : Area2D
 	{
 		if (body is Jogador)
 		{
-			QueueFree();
-			((Jogador)body).lives++;
-			GD.Print("Vida Coletada");
+			if(((Jogador)body).lives < 3)
+			{
+				QueueFree();
+				((Jogador)body).lives++;
+				GD.Print("Vida Coletada");
+			}
+			
 		}
 	}
 }

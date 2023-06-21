@@ -7,8 +7,8 @@ public partial class Jogador : CharacterBody2D
 	private Vector2 velocity;
 	private Vector2 direction;
 	public Vector2 savePoint;
-	public const float Speed = 300.0f;
-	public const float JumpVelocity = -400.0f;
+	public const float Speed = 280.0f;
+	public const float JumpVelocity = -350.0f;
 	private float minHeigth = 310f;
 	private bool lookingRight = true;
 	private bool doubleJump;
@@ -55,6 +55,8 @@ public partial class Jogador : CharacterBody2D
 		MoveAndSlide();
 
 		Animation(velocity); // Animation of the player
+
+		CountLivesAnimation();
 
 	} //fim do process
 
@@ -131,11 +133,21 @@ public partial class Jogador : CharacterBody2D
 	{
 		if(lives == 3){
 			//show all 3
+			GetTree().CallGroup("HUD", "ShowVida1");
+			GetTree().CallGroup("HUD", "ShowVida2");
+			GetTree().CallGroup("HUD", "ShowVida3");
 		} else if(lives == 2){
 			//show 1 and 2
+			GetTree().CallGroup("HUD", "ShowVida1");
+			GetTree().CallGroup("HUD", "ShowVida2");
+			GetTree().CallGroup("HUD", "HideVida3");
 		} else {
 			//show 1
+			GetTree().CallGroup("HUD", "ShowVida1");
+			GetTree().CallGroup("HUD", "HideVida2");
+			GetTree().CallGroup("HUD", "HideVida3");
 		}
+
 	}
 	
 	public void SetStart(Vector2 startPosition)

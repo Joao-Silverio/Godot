@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://boclgykr0iclw"]
+[gd_scene load_steps=10 format=3 uid="uid://boclgykr0iclw"]
 
 [ext_resource type="PackedScene" uid="uid://b1uw5jcdeiwwx" path="res://tile_map.tscn" id="1_0tma3"]
 [ext_resource type="Script" path="res://mapa_JoaoSilverio.cs" id="1_vpe6r"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://towi7ua1fecg" path="res://SavePoint.tscn" id="5_psxeg"]
 [ext_resource type="PackedScene" uid="uid://xrxbbn7lx7fv" path="res://chegada.tscn" id="7_dax14"]
 [ext_resource type="PackedScene" uid="uid://d4m0nhfgn72n" path="res://vida.tscn" id="8_vlhbq"]
+[ext_resource type="PackedScene" uid="uid://jxuiiqmsl4nq" path="res://HUD.tscn" id="9_p2mfy"]
 
 [node name="Mapa_JoaoSilverio" type="Node2D"]
 script = ExtResource("1_vpe6r")
@@ -48,3 +49,5 @@ position = Vector2(1056, 180)
 
 [node name="Vida" parent="." instance=ExtResource("8_vlhbq")]
 position = Vector2(441, 12)
+
+[node name="HUD" parent="." instance=ExtResource("9_p2mfy")]
