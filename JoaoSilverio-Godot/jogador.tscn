@@ -73,8 +73,9 @@ shape = SubResource("RectangleShape2D_wwgu0")
 
 [node name="BG Music" type="AudioStreamPlayer" parent="Som"]
 stream = ExtResource("3_k2lvs")
+volume_db = 24.0
 autoplay = true
 
 [node name="Pulo" type="AudioStreamPlayer" parent="Som"]
 stream = ExtResource("3_hrbrj")
-volume_db = 22.486
+volume_db = 18.738
