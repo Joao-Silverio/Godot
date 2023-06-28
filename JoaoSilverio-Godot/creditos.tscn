@@ -1,0 +1,31 @@
+[gd_scene load_steps=2 format=3 uid="uid://pcjnq7gqdgyo"]
+
+[ext_resource type="Script" path="res://Button.cs" id="1_ypuy2"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 320.0
+offset_bottom = 180.0
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 34.0
+offset_top = 33.0
+offset_right = 293.0
+offset_bottom = 59.0
+text = "Jogo feito por:
+ João Victor Silvério"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 101.0
+offset_top = 86.0
+offset_right = 228.0
+offset_bottom = 117.0
+text = "Voltar ao Menu"
+script = ExtResource("1_ypuy2")
+
+[connection signal="pressed" from="Button" to="Button" method="OnButtonDown"]

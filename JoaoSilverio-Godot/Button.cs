@@ -15,8 +15,6 @@ public partial class Button : Godot.Button
 
 	private void OnButtonDown()
 	{
-		GetTree().ChangeSceneToFile("mapa_JoaoSilverio.tscn");
+		GetTree().ChangeSceneToFile("Menu.tscn");
 	}
 }
-
-

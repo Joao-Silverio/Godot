@@ -50,6 +50,6 @@ public partial class HUD : CanvasLayer
 
 	public void CountDiamonds(string diamonds)
 	{
-		contaDiamante.setText(diamonds);
+		contaDiamante.Text = diamonds;
 	}
 }

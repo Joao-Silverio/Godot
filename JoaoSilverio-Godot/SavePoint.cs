@@ -10,6 +10,7 @@ public partial class SavePoint : Area2D
 		if (isOnSavePoint && Input.IsActionJustPressed("ativar"))
 		{
 			GetTree().CallGroup("GrupoJogador", "SaveNewSavePoint");
+			GD.Print("Save Point Alterado!");
 		}
 	}
 

@@ -24,12 +24,14 @@ public partial class Jogador : CharacterBody2D
 	public float gravity = ProjectSettings.GetSetting("physics/2d/default_gravity").AsSingle();
 
 	private AnimatedSprite2D animate;
+	private AudioStreamPlayer somDePulo;
 
 	public override void _Ready() {
 		animate = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
 		allDiamondsColected = false;
 		diamante = 0;
 		lives = 3;
+		somDePulo = GetNode<AudioStreamPlayer>("Som/Pulo");
 	} //fim do ready
 
 	public override void _PhysicsProcess(double delta)
@@ -67,6 +69,7 @@ public partial class Jogador : CharacterBody2D
 		{
 			velocity.Y = JumpVelocity;
 			doubleJump = true;
+			somDePulo.Play();
 		}
 		else if (Input.IsActionJustPressed("ui_accept") && !IsOnFloor() && doubleJump)
 		{
@@ -83,7 +86,6 @@ public partial class Jogador : CharacterBody2D
 		}
 		else if (IsOnFloor())
 		{
-			//velocity.X = 0;
 			velocity.X = Mathf.MoveToward(Velocity.X, 0, Speed);
 		}
 		else if (direction != Vector2.Zero && !IsOnFloor())
@@ -97,10 +99,6 @@ public partial class Jogador : CharacterBody2D
 				velocity.X = direction.X * (Speed / 5);
 			}
 			else velocity.X = Mathf.MoveToward(Velocity.X, direction.X * Speed/2, Speed);
-		}
-		else if (!IsOnFloor())
-		{
-			//velocity.X = Mathf.MoveToward(Velocity.X, 0, Speed);
 		}
 	}
 
@@ -147,7 +145,7 @@ public partial class Jogador : CharacterBody2D
 			GetTree().CallGroup("HUD", "HideVida2");
 			GetTree().CallGroup("HUD", "HideVida3");
 		}
-
+		GetTree().CallGroup("HUD", "CountDiamonds", diamante);
 	}
 	
 	public void SetStart(Vector2 startPosition)
@@ -209,7 +207,6 @@ public partial class Jogador : CharacterBody2D
 		{
 			GD.Print("Game Over");
 			GetTree().ChangeSceneToFile("game_over.tscn");
-			//lives = 1; //Abrir Cena Game Over 
 		}
 	}
 

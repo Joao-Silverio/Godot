@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://clkr3jsskjems"]
+[gd_scene load_steps=10 format=3 uid="uid://clkr3jsskjems"]
 
 [ext_resource type="PackedScene" uid="uid://b1uw5jcdeiwwx" path="res://tile_map.tscn" id="1_agyis"]
 [ext_resource type="Script" path="res://mapa_2.cs" id="1_hjpy2"]
@@ -6,6 +6,9 @@
 [ext_resource type="PackedScene" uid="uid://x2fa58wxdnsy" path="res://Diamantes.tscn" id="3_7mcmo"]
 [ext_resource type="PackedScene" uid="uid://4hvg3jqyq5gv" path="res://Spikes.tscn" id="4_86brs"]
 [ext_resource type="PackedScene" uid="uid://xrxbbn7lx7fv" path="res://chegada.tscn" id="5_txpfe"]
+[ext_resource type="PackedScene" uid="uid://d0s2hvsptus0k" path="res://plataforma.tscn" id="7_rxlwv"]
+[ext_resource type="PackedScene" uid="uid://d4m0nhfgn72n" path="res://vida.tscn" id="8_k8ugm"]
+[ext_resource type="PackedScene" uid="uid://bh8xcs0trev37" path="res://Enemy.tscn" id="9_xo0yo"]
 
 [node name="mapa_2" type="Node2D"]
 script = ExtResource("1_hjpy2")
@@ -36,3 +39,12 @@ position = Vector2(1132, 277)
 
 [node name="Chegada" parent="." instance=ExtResource("5_txpfe")]
 position = Vector2(1398, 231)
+
+[node name="Plataforma" parent="." instance=ExtResource("7_rxlwv")]
+position = Vector2(881, 89)
+
+[node name="Vida" parent="." instance=ExtResource("8_k8ugm")]
+position = Vector2(880, 35)
+
+[node name="Enemy" parent="." instance=ExtResource("9_xo0yo")]
+position = Vector2(860, 186)

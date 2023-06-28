@@ -1,7 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://ytn4vaidblk4"]
+[gd_scene load_steps=11 format=3 uid="uid://ytn4vaidblk4"]
 
 [ext_resource type="Script" path="res://Jogador.cs" id="1_8qo3t"]
 [ext_resource type="Texture2D" uid="uid://7ctg5kbrm7yv" path="res://pixel_platformer/Tilemap/characters_packed.png" id="2_qlbxd"]
+[ext_resource type="AudioStream" uid="uid://dykftfcyrutc3" path="res://sound7.mp3" id="3_hrbrj"]
+[ext_resource type="AudioStream" uid="uid://ceayd8qyoyqbq" path="res://The Verdant Grove LOOP.wav" id="3_k2lvs"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8qg4c"]
 atlas = ExtResource("2_qlbxd")
@@ -58,7 +60,7 @@ script = ExtResource("1_8qo3t")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_6oe4j")
-animation = &"jump"
+animation = &"idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
@@ -66,3 +68,13 @@ position = Vector2(0, 0.5)
 shape = SubResource("RectangleShape2D_wwgu0")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Som" type="Node" parent="."]
+
+[node name="BG Music" type="AudioStreamPlayer" parent="Som"]
+stream = ExtResource("3_k2lvs")
+autoplay = true
+
+[node name="Pulo" type="AudioStreamPlayer" parent="Som"]
+stream = ExtResource("3_hrbrj")
+volume_db = 22.486
